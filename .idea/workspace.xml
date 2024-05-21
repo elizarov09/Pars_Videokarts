@@ -4,22 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e14f787-798f-4b88-9f82-b68cba9641f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Pars_Videokarts.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tree.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/videokartpars/scrapy.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/videokartpars/videokartpars/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/videokartpars/videokartpars/items.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/videokartpars/videokartpars/middlewares.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/videokartpars/videokartpars/pipelines.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/videokartpars/videokartpars/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/videokartpars/videokartpars/spiders/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/videokartpars/videokartpars/spiders/videokartnewpars.py" afterDir="false" />
+    <list default="true" id="7e14f787-798f-4b88-9f82-b68cba9641f8" name="Changes" comment="PS06videokartparsing. Dont work.">
+      <change afterPath="$PROJECT_DIR$/videokartpars/videokartpars/spiders/output.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/videokartpars/videokartpars/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/videokartpars/videokartpars/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/videokartpars/videokartpars/spiders/videokartnewpars.py" beforeDir="false" afterPath="$PROJECT_DIR$/videokartpars/videokartpars/spiders/videokartnewpars.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "elizarov09"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/elizarov09/Pars_Videokarts.git",
+    "accountId": "4662b4ca-9cfb-4167-8b2e-7a954b0e8427"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -72,9 +73,20 @@
       <option name="presentableId" value="Default" />
       <updated>1716105056942</updated>
     </task>
+    <task id="LOCAL-00001" summary="PS06-videokartparsing. Dont work.">
+      <option name="closed" value="true" />
+      <created>1716116005202</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716116005202</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="PS06-videokartparsing. Dont work." />
+    <option name="LAST_COMMIT_MESSAGE" value="PS06-videokartparsing. Dont work." />
   </component>
 </project>

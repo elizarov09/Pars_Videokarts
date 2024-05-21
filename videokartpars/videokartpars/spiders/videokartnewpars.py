@@ -1,35 +1,50 @@
 import scrapy
-from scrapy_selenium import SeleniumRequest
-from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from shutil import which
+from scrapy.http import HtmlResponse
+import time
 
-class VideokartparsSpider(scrapy.Spider):
+
+class CitilinkSpider(scrapy.Spider):
     name = "videokartpars"
     allowed_domains = ["citilink.ru"]
-    start_urls = ['https://www.citilink.ru/catalog/videokarty/']
+    start_urls = ["https://www.citilink.ru/catalog/videokarty/"]
 
-    def start_requests(self):
+    def __init__(self, *args, **kwargs):
+        super(CitilinkSpider, self).__init__(*args, **kwargs)
         chrome_options = Options()
-        for arg in self.settings.get('SELENIUM_DRIVER_ARGUMENTS'):
-            chrome_options.add_argument(arg)
-        chrome_service = ChromeService(executable_path=which('chromedriver'))
-
-        for url in self.start_urls:
-            yield SeleniumRequest(
-                url=url,
-                callback=self.parse,
-                wait_time=10,
-                driver_options=chrome_options,
-                driver_service=chrome_service  # Здесь добавляем сервис
-            )
+        chrome_options.add_argument("--headless")
+        self.driver = webdriver.Chrome(options=chrome_options)
 
     def parse(self, response):
-        videokarts = response.css('div.e1ex4k9s0.app-catalog-1bqgmvw.e1loosed0')
-        for videokart in videokarts:
-            yield {
-                'name': videokart.css('div.app-catalog-oacxam a.app-catalog-9gnskf::text').get(),
-                'link': response.urljoin(videokart.css('div.app-catalog-oacxam a.app-catalog-9gnskf::attr(href)').get()),
-                'price': videokart.css('span.app-catalog-56qww8.e1j9birj0::text').get(),
-                'image': videokart.css('div.ep5h2on0 img.is-selected::attr(src)').get(),
-            }
+        self.driver.get(response.url)
+        time.sleep(3)
+
+        body = self.driver.page_source
+        response = HtmlResponse(url=self.driver.current_url, body=body, encoding='utf-8')
+
+        products = response.css('div[data-meta-name="ProductVerticalSnippet"]')
+        self.log(f"Found {len(products)} products")
+
+        for product in products:
+            title_element = product.css('a[data-meta-name="Snippet__title"]')
+            title = title_element.css('::attr(title)').get()
+            link = title_element.css('::attr(href)').get()
+            price = product.css('span[data-meta-is-total="notTotal"] span.app-catalog-56qww8::text').get()
+
+            self.log(f"Title: {title}, Link: {link}, Price: {price}")
+
+            if title and price and link:
+                yield {
+                    'title': title.strip(),
+                    'price': price.replace('\u00a0', '').strip(),
+                    'link': response.urljoin(link),
+                }
+
+        # Переход на следующую страницу, если она существует
+        next_page = response.css('a[data-meta-name="NextPageButton"]::attr(href)').get()
+        if next_page:
+            yield scrapy.Request(url=response.urljoin(next_page), callback=self.parse)
+
+    def closed(self, reason):
+        self.driver.quit()
